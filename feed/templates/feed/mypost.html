@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+    My Posts
+{% endblock head_title %}
+
+{% block body %}
+    <div id = "posts-container">
+        {% if posts %}
+            {% for post in posts %}
+                {% include "includes/post.html" with post=post  show_detail_link=True %}
+                <hr/>
+            {% endfor %}
+        {% else %}
+            <div class='text-center'>
+                <p class='font-semibold text-red-500 text-4xl'>You Do not have any Posts !!</p>
+                <a href="/" class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 mt-10 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center js-toggle-modal">
+                    <span class="mr-2 text-lg" type='button'>Create New Post</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
+                </a>
+            </div>  
+        {% endif %}
+    </div>
+    
+{% endblock  %}

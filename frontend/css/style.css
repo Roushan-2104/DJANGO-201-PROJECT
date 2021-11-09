@@ -1,0 +1,31 @@
+input{
+    padding: 5px;
+    font-size: 15px;
+    margin: 10px 1px;
+    border-radius: 4px;
+}
+label{
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.login,.signup{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: rgba(128, 128, 128,0.2);
+    border-radius: 8px;
+    
+}
+.control-label{
+    font-size: 22px;
+}
+.textinput,.emailinput{
+    font-size: 16px;
+    padding-right: 20px;
+    margin: 10px 1px;
+}
+.help-block{
+    color: rgba(255, 0, 0,0.7);
+    margin-bottom: 10px;
+}

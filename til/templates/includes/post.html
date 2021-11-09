@@ -1,0 +1,37 @@
+{% load thumbnail %}
+
+<div class="max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md" style='width:50rem;'>
+    <div class="flex justify-between items-center w-full">
+        <span class="font-light text-gray-600">{{ post.date|date:"F j, Y, g:i:a" }}</span>
+    </div>
+    <div class="mt-2">
+        <p class="mt-3 text-gray-800 font-semibold text-lg">{{ post.text }}</p>
+    </div>
+    <div class="flex justify-between items-center mt-3">
+        {% if show_detail_link %}
+            <a class="text-blue-600 hover:underline" href="{% url 'feed:detail' post.id %}">Read more</a>
+        {% else %}
+            {% ifequal user.username post.author.username %}
+                <div class="m-3 mx-0 mb-0">
+                    <a href="{% url 'feed:delete' post.id %}" class="bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center delete-toggle-modal">
+                        <span class="mr-2">Delete Post</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentcolor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+                        </svg>
+                    </a>
+                </div>
+            {% else %}
+                <span>&nbsp;</span>
+            {% endifequal %}   
+        {% endif %}
+        
+        <div>
+            <a class="flex items-center" href="{% url 'profiles:detail' post.author.username %}">
+                {% thumbnail post.author.profile.image "373x373" crop="center" as im %}
+                    <img src="{{ im.url }}" class='mx-4 w-10 h-10 object-cover rounded-full hidden sm:block' alt='avatar'>
+                {% endthumbnail %}
+                <h1 class="text-gray-700 font-bold">{{post.author.username}}</h1>
+            </a>
+        </div>
+    </div>
+</div>
